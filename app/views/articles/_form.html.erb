@@ -1,0 +1,28 @@
+<%= form_for @article do |f| %>
+<% if @article.errors.any? %>
+<h3>These errors prohibited the form from being saved:</h3>
+<ul>
+	<%@article.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+<% end %>
+</ul>
+
+<label for=article_title >Title:</label><br/>
+<%= f.text_field :title %><br/>
+<label for=article_body >Body:</label><br/>
+<%= f.text_area :body %><br/><br/>
+
+<label for=article_category_id > Category Name</label><br/>
+<%= f.collection_select :category_id, Category.all, :id, :name, prompt: "-->Select Category<--" %><br/><br/>
+
+<label for=article_published_date >Published date</label><br/>
+<%= f.date_field :published_date %><br/>
+
+<%= f.label :cover %>
+<%= f.file_field :cover %><br/>
+<!-- <label for=article_feature_image_url >Feature image url </label><br/> -->
+<%#= f.text_field :feature_image_url %>
+
+<%= f.submit %>
+<% end %>

@@ -1,0 +1,13 @@
+<h4><%= @comment.article.title %></h4>
+<p>Body: <%= @comment.body %></p>
+
+<h3>Listing other comments for this article</h3>
+<ol>
+<% @comment.article.comments.each do |comment| %>
+	<% if @comment.id == comment.id %>
+		<% next %>
+	<% else %>
+		<li><%= comment.body %></li>
+	<% end %>
+<% end %>
+</ol>
