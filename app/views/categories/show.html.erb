@@ -7,3 +7,6 @@
 <% list.each do |element| %>
 <li><%= link_to element.title, article_path(element) %></li>
 <% end %>
+<% if (user_signed_in?) && (can? :create, Article.new) %>
+	<%= link_to "Add Article", new_article_path %>
+<% end %>

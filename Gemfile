@@ -11,7 +11,8 @@ gem 'rails', '~> 5.1.4'
 gem 'devise'
 gem 'cancancan'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
-gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem 'friendly_id', '~> 5.1.0'
+gem 'ckeditor'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

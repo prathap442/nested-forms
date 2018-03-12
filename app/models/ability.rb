@@ -19,6 +19,7 @@ class Ability
         elsif user.role? "author"
             can :read, [Category, Article, Comment]
             can :create, [Article, Comment]
+            can :update, Article
             can :destroy, Comment do |comment|
             can comment.user_id == user.id || comment.article.user_id == user.id
             end
