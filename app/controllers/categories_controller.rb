@@ -6,10 +6,12 @@ class CategoriesController < ApplicationController
 	end
 	def new
 		@category = Category.new
+		@category.articles.build.comments.build
 	end
 	def create
-		@category = Category.new(params[:category].permit(:name, :description))
+		@category = Category.new(category_params)
 		if @category.save
+			binding.pry
 			redirect_to categories_path
 		else
 			render action: 'new'
@@ -34,4 +36,9 @@ class CategoriesController < ApplicationController
 		@category.destroy
 		redirect_to categories_path
 	end
+	private
+	def category_params
+	  binding.pry
+	  params.require(:category).permit(:name, :description,articles_attributes: [:title,:body,:published_date,:is_published,:cover,:slug,:user_id,comments_attributes: [:body,:user_id]])
+	end		
 end

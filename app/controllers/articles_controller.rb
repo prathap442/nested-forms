@@ -24,6 +24,13 @@ class ArticlesController < ApplicationController
 		
 		@article = Article.friendly.find(params[:id])
 		@comment = Comment.new
+		respond_to do |format|
+			format.html
+			format.pdf do
+			  binding.pry
+			   render pdf: "report" 
+			end
+        end
 	end
 	def edit
 		@article = Article.find(params[:id])

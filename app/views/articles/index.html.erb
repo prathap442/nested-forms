@@ -7,7 +7,11 @@
             <small><%= @articles.count %></small>
           </h1>
           <% @articles.each do |article| %>
-	          <!-- Blog Post -->
+            <%cache article do%>
+              this is due to the cache done
+              <%=render article%>
+            <%end%>
+            <!-- Blog Post -->
 	          <div class="card mb-4">
 	          	<%= image_tag(article.cover, size: "750x300", class: "card-img-top") %>
 	            <div class="card-body">

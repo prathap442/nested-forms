@@ -15,6 +15,11 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'ckeditor'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'faker'
+gem 'wkhtmltopdf-binary'
+gem 'pdfkit'
+gem 'pry'
+gem 'wicked_pdf'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
