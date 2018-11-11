@@ -13,13 +13,16 @@ gem 'cancancan'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'friendly_id', '~> 5.1.0'
 gem 'ckeditor'
+gem 'state_machine'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 gem 'faker'
 gem 'wkhtmltopdf-binary'
 gem 'pdfkit'
 gem 'pry'
+gem 'pg'
 gem 'wicked_pdf'
+gem 'social-share-button'
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

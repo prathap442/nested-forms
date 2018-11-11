@@ -6,7 +6,8 @@ class CategoriesController < ApplicationController
 	end
 	def new
 		@category = Category.new
-		@category.articles.build.comments.build
+		@article = @category.articles.build
+		@article.comments.build
 	end
 	def create
 		@category = Category.new(category_params)
@@ -19,13 +20,15 @@ class CategoriesController < ApplicationController
 	end
 	def show
 		@category = Category.find(params[:id])
+		@cat  = Category.first
+		@cat.articles.build.comments.build
 	end
 	def edit
 		@category = Category.find(params[:id])
 	end
 	def update
 		@category = Category.find(params[:id])
-		if @category.update_attributes(params[:category].permit(:name, :description))
+		if @category.update_attributes(category_params)
 			redirect_to category_path(@category.id)
 		else
 			render action: 'edit'

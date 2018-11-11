@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
 		@comment = Comment.new(comment_params)
 		@comment.user_id = current_user.id
 		if @comment.save
-			redirect_to article_path(@comment.article.slug), notice: "You have successfully added comment"
+		  redirect_to article_path(@comment.article.slug), notice: "You have successfully added comment"
+		  GuestsCleanupJob.set(wait: 10.seconds).perform_later("prathap") 
 		end
 	end
 

@@ -10,3 +10,47 @@
 <% if (user_signed_in?) && (can? :create, Article.new) %>
 	<%= link_to "Add Article", new_article_path %>
 <% end %>
+
+
+
+<%= form_for @cat do |f| %>
+	<% if @category.errors.any? %>
+	<h3>These errors prohibited the form from being saved:</h3>
+	<ul>
+		<%@category.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	<% end %>
+	</ul>
+	
+	<label for=category_name > Category Name:</label><br/>
+	<%= f.text_field :name %><br/>
+	
+	<label for=category_description>Category Description:</label><br/>
+	<%= f.text_area :description %><br/>
+	<fieldset>	
+	  <%= f.fields_for :articles do |builder|%>
+			ARTICLE TITLE<%=builder.label :title%>
+			<%=builder.text_field :title%><br/>
+			ARTICLE BODY<%=builder.label :body%>
+			<%=builder.text_field :body%><br/>
+			PUBLISHED DATE<%=builder.label :published_date,"Published Date"%>
+			<%=builder.date_field :published_date%><br/>
+			<%= builder.label :is_published, "Has it been published", :value => true%>
+			<%=builder.label :is_published,"Not Published"%><br/>
+			IS PUBLISHED<%= builder.radio_button :is_published,value: false %>
+			<%=builder.label :is_published,"Published"%><br/>
+			<%= builder.radio_button :is_published,value: true %>
+			<%=builder.hidden_field :user_id,value: current_user.id%><br/>
+			<fieldset>
+				<%=builder.fields_for :comments do |commentbuilder|%>
+					COMMENT BODY<%=commentbuilder.label :body,"Body" %>
+					<%=commentbuilder.text_area :body%><br/>
+					<%=commentbuilder.hidden_field :user_id,value: current_user.id%><br/>
+				<%end%>
+			</fieldset>	
+		<% end %>
+	</fieldset>		
+	<%= f.submit %>
+	
+	<% end %>
